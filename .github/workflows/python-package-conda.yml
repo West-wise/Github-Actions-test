@@ -12,14 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
       - name: Display Python version
-        run: python -c "import sys; print(sys.version)" >> version_output_${{ matrix.python-version }}.txt
+        run: python -c "import sys; print(sys.version)" >> version_output.txt
 
       - name: Upload output artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
-          name: python-version-output-${{ matrix.python-version }}
-          path: version_output_${{ matrix.python-version }}.txt
+          name: python-version-output
+          path: version_output.txt
