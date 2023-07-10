@@ -11,16 +11,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - run: mkdir -p path/to/artifact
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
+        run: python -c "import sys; print(sys.version)" >> version_output_${{ matrix.python-version }}.txt
 
       - name: Upload output artifact
         uses: actions/upload-artifact@v3
         with:
-          name: python-version-output
-          path: path/to/artifact/
+          name: python-version-output-${{ matrix.python-version }}
+          path: version_output_${{ matrix.python-version }}.txt
